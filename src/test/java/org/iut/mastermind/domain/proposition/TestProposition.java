@@ -25,6 +25,14 @@ public class TestProposition {
     }
 
     @Test
+    @DisplayName("contient deux même lettres placées")
+    public void casMemeLettrePlacee() {
+        var mot = new MotSecret("ERROR");
+        var reponse = mot.compareProposition("ERROR");
+        assertResultat(reponse, PLACEE, PLACEE, PLACEE, PLACEE, PLACEE);
+    }
+
+    @Test
     @DisplayName("contient une lettre incorrecte et une non placée")
     public void casDeuxiemeLettreMalPlacee() {
         var mot = new MotSecret("SO");

@@ -24,9 +24,9 @@ public class Reponse {
     // du mot proposé
     public void compare(String essai) {
         for (int i = 0; i < essai.length(); i++) {
-            position = i ;
+            position = i;
             char charActuelle = essai.charAt(position);
-            resultat.add(position, evaluationCaractere(charActuelle));
+            resultat.add(evaluationCaractere(charActuelle));
         }
     }
 
@@ -62,7 +62,9 @@ public class Reponse {
 
     // vrai si le caractère est placé dans le mot secret
     private boolean estPlace(char carCourant) {
-        int i = motSecret.indexOf(carCourant) ;
-        return i == position ;
+        return motSecret.chars()
+                .skip(position)
+                .findFirst()
+                .orElse(-1) == carCourant;
     }
 }
