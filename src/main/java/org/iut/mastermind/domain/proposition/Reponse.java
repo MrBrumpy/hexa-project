@@ -9,7 +9,6 @@ import static org.iut.mastermind.domain.proposition.Lettre.*;
 public class Reponse {
     private final String motSecret;
     private final List<Lettre> resultat = new ArrayList<>();
-    private int position;
 
     public Reponse(String mot) {
         this.motSecret = mot;
@@ -23,10 +22,10 @@ public class Reponse {
     // on construit le résultat en analysant chaque lettre
     // du mot proposé
     public void compare(String essai) {
+        resultat.clear();
         for (int i = 0; i < essai.length(); i++) {
-            position = i;
-            char charActuelle = essai.charAt(position);
-            resultat.add(evaluationCaractere(charActuelle));
+            char charActuelle = essai.charAt(i);
+            resultat.add(evaluationCaractere(charActuelle, i));
         }
     }
 
@@ -42,9 +41,9 @@ public class Reponse {
     }
 
     // renvoie le statut du caractère (incorrect, mal placé, placé)
-    private Lettre evaluationCaractere(char carCourant) {
+    private Lettre evaluationCaractere(char carCourant, int position) {
         if (estPresent(carCourant)) {
-            if(estPlace(carCourant)) {
+            if(estPlace(carCourant, position)) {
                 return PLACEE ;
             } else {
                 return NON_PLACEE ;
@@ -61,7 +60,7 @@ public class Reponse {
     }
 
     // vrai si le caractère est placé dans le mot secret
-    private boolean estPlace(char carCourant) {
+    private boolean estPlace(char carCourant, int position) {
         return motSecret.chars()
                 .skip(position)
                 .findFirst()
