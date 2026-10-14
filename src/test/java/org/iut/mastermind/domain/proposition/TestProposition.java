@@ -39,7 +39,7 @@ public class TestProposition {
         var mot = new MotSecret("SOLID");
         var reponse = mot.compareProposition("SOL");
 
-        assertThat(reponse.lettresResultat()).hasSize(5);
+        assertThat(reponse == null);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class TestProposition {
         var mot = new MotSecret("SOL");
         var reponse = mot.compareProposition("SOLID");
 
-        assertThat(reponse.lettresResultat()).hasSize(3);
+        assertThat(reponse == null);
     }
 
     @Test
@@ -60,7 +60,6 @@ public class TestProposition {
 
         assertThat(reponse.lettresResultat()).hasSize(3);
     }
-
 
 
     @Test

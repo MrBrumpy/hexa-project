@@ -11,7 +11,11 @@ public class MotSecret {
     // du mot proposé avec le mot secret
     public Reponse compareProposition(String essai) {
         Reponse r = new Reponse(motSecret) ;
-        r.compare(essai);
-        return r ;
+        if(r.compare(essai)) {
+            return r ;
+        } else {
+            return null ;
+        }
+
     }
 }
