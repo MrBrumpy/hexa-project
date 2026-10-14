@@ -46,7 +46,7 @@ public class Partie {
     // si toutes les lettres sont correctement placées,
     // on a terminé la partie
     public Reponse tourDeJeu(String motPropose) {
-        if (nbEssais < NB_ESSAIS_MAX) {
+        if (nbEssais < NB_ESSAIS_MAX && !partieTerminee) {
             nbEssais++;
 
             MotSecret motSecret = new MotSecret(motADeviner);
