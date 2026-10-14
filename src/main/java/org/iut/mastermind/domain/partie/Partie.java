@@ -22,7 +22,7 @@ public class Partie {
     }
 
     public static Partie reprendre(Joueur joueur, String motADeviner, int nbEssais) {
-        return new Partie(joueur, motADeviner, nbEssais, false);
+        return new Partie(joueur, motADeviner, nbEssais, (nbEssais > NB_ESSAIS_MAX));
     }
 
     // getter joueur
