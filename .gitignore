@@ -2,4 +2,4 @@
 !src/
 !src/**
 !.gitignore
-!.md
+!Refactoring.md
