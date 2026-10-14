@@ -1,5 +1,7 @@
 package org.iut.mastermind.domain.partie;
 
+import java.util.Objects;
+
 public record Joueur(String nom) {
 
     public String getNom() {
@@ -9,7 +11,7 @@ public record Joueur(String nom) {
     @Override
     public boolean equals(Object o) {
         if (o instanceof Joueur) {
-            return nom ==  ((Joueur) o).nom ;
+            return Objects.equals(nom, ((Joueur) o).nom);
         }
         return false ;
     }
