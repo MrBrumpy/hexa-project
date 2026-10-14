@@ -16,6 +16,15 @@ class TestJoueur {
     }
 
     @Test
+    @DisplayName("compare le contenu de deux chaînes distinctes")
+    void joueursNomsIdentiquesObjetsDifferents() {
+        Joueur a = new Joueur(new String("Alice"));
+        Joueur b = new Joueur(new String("Alice"));
+
+        assertThat(a).isEqualTo(b);
+    }
+
+    @Test
     @DisplayName("des joueurs de noms différents")
     void joueursNomsDifferents() {
         Joueur a = new Joueur("meme nom");

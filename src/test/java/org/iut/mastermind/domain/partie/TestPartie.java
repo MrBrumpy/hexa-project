@@ -2,6 +2,7 @@ package org.iut.mastermind.domain.partie;
 
 import org.iut.mastermind.domain.Mastermind;
 import org.iut.mastermind.domain.proposition.Lettre;
+import org.iut.mastermind.domain.proposition.Reponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,6 +35,25 @@ public class TestPartie {
         ResultatPartie res = mastermind.evaluation(JOUEUR, MOT_INCORRECT);
         Lettre premiereLettre = res.resultat().lettre(0);
         assertThat(premiereLettre).isEqualTo(Lettre.NON_PLACEE);
+    }
+
+    @Test
+    @DisplayName("ne permet pas de jouer après la fin de la partie")
+    void casPartieDejaTerminee() {
+        Partie partie = Partie.nouvelle(JOUEUR, MOT_CORRECT);
+        partie.done();
+
+        Reponse reponse = partie.tourDeJeu(MOT_INCORRECT);
+
+        assertThat(reponse).isNull();
+    }
+
+    @Test
+    @DisplayName("ne permet pas de reprendre une partie au-delà de la limite")
+    void casRepriseAvecTropEssais() {
+        Partie partie = Partie.reprendre(JOUEUR, MOT_CORRECT, 6);
+
+        assertThat(partie.isTerminee()).isTrue();
     }
 
     @Test

@@ -25,6 +25,45 @@ public class TestProposition {
     }
 
     @Test
+    @DisplayName("ne compte pas les occurrences supplémentaires")
+    void casLettresRepeteesEnTrop() {
+        var mot = new MotSecret("AB");
+        var reponse = mot.compareProposition("AA");
+
+        assertResultat(reponse, PLACEE, INCORRECTE);
+    }
+
+    @Test
+    @DisplayName("refuse une proposition trop courte")
+    void casPropositionTropCourte() {
+        var mot = new MotSecret("SOLID");
+        var reponse = mot.compareProposition("SOL");
+
+        assertThat(reponse.lettresResultat()).hasSize(5);
+    }
+
+    @Test
+    @DisplayName("refuse une proposition trop longue")
+    void casPropositionTropLongue() {
+        var mot = new MotSecret("SOL");
+        var reponse = mot.compareProposition("SOLID");
+
+        assertThat(reponse.lettresResultat()).hasSize(3);
+    }
+
+    @Test
+    @DisplayName("ne conserve pas les résultats d'une comparaison précédente")
+    void casDeuxComparaisons() {
+        var reponse = new Reponse("SOL");
+        reponse.compare("SOL");
+        reponse.compare("XXX");
+
+        assertThat(reponse.lettresResultat()).hasSize(3);
+    }
+
+
+
+    @Test
     @DisplayName("contient deux même lettres placées")
     public void casMemeLettrePlacee() {
         var mot = new MotSecret("ERROR");
